@@ -1,6 +1,6 @@
-Template repository to create new agents with custom spines for [Upkie](https://github.com/upkie/upkie) wheeled bipeds.
+# A Data-driven Contact Estimation Method for Wheeled-Biped Robots
 
-If you don't need a custom spine, you can implement your agent in Python directly. Check out the [MPC](https://github.com/upkie/mpc_balancer) or [Pink](https://github.com/upkie/pink_balancer) balancers for instance.
+[![Video](figs/experiment_overview.png)](https://www.youtube.com/watch?v=QemngyjAQVU)
 
 ## Getting started
 
