@@ -1,0 +1,7 @@
+__pycache__
+bazel-*
+tools/bazel
+.vscode/settings.json
+.vscode/c_cpp_properties.json
+read_log.py
+*.mpack

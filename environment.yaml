@@ -1,0 +1,5 @@
+name: contact_agent  # TODO: set project name
+channels:
+    - https://conda.anaconda.org/conda-forge
+dependencies:
+    - upkie >=5.0.1
