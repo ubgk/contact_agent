@@ -23,10 +23,6 @@ void ContactFilter::read(const Dictionary &observation) {
 
   spdlog::debug("p_contact: " + std::to_string(p_contact));
 
-  double knee_torque = observation("measurement_model")("left_knee")("torque");
-  double wheel_torque =
-      observation("measurement_model")("left_wheel")("torque");
-
   if (std::isnan(contact_likelihood)) {
     spdlog::error("contact_likelihood is NaN!");
   } else if (std::isnan(no_contact_likelihood)) {
@@ -35,7 +31,7 @@ void ContactFilter::read(const Dictionary &observation) {
 
   double p_switch = observation("transition_model")("p_switch");
   double p_landing =
-      observation("transition_model")("p_landing"); // CONDITIONED ON switch!
+      observation("transition_model")("p_landing");  // CONDITIONED ON switch!
   double power = observation("transition_model")("power");
 
   spdlog::debug("p_switch: " + std::to_string(p_switch) + " p_landing: " +
@@ -77,7 +73,9 @@ void ContactFilter::read(const Dictionary &observation) {
   // Apply a very gentle low-pass filter to the contact belief, to smooth it
   // out.
   p_contact_smooth = low_pass_filter(p_contact_smooth, 1e-2, p_contact, 1e-3);
-
 }
 
 void ContactFilter::write(Dictionary &observation) {
+  observation(prefix())("p_contact") = p_contact;
+  observation(prefix())("p_contact_smooth") = p_contact_smooth;
+}
