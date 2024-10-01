@@ -2,21 +2,18 @@
 
 [![Video](figs/experiment_overview.png)](https://www.youtube.com/watch?v=QemngyjAQVU)
 
-## Getting started
+This project implements a Bayesian filter for estimating the contact state of [Upkie](https://github.com/upkie/upkie), a fully open-source wheeled-biped. Check out the [video](https://www.youtube.com/watch?v=QemngyjAQVU).
 
-1. Create a new repository from this template.
-2. Search for the string "TODO" and update files accordingly
-3. Replace ``LICENSE`` with the license of your choice (the default one is Apache-2.0)
-4. Start listing your dependencies in ``environment.yaml``
-5. Implement your agent in the ``agent`` directory.
-6. Implement your C++ spines in the ``spines`` directory.
+## Overview
+![Overview](figs/contact_filter.png)
+We use Bayesian filtering to estimate the posterior probability $P(S_t|m_{0:t})$ of being in contact state $S_t$ given measurements $m_{0:t}$. Internally, measurement probabilities $P(m_t|S_t)$ are estimated by kernel density estimation (KDE) from knee and wheel torque sensors, while transition probabilities are estimated from IMU measurements through frequency analysis.
 
-## Usage
 
-- Install Python packages to a conda environment: ``conda create -f environment.yaml``
-- Activate conda environment: ``conda activate <env_name>``
-- Run the simulation spine: ``make simulate``
-- Build the pi3hat spine locally: ``make build``
-- Upload the full repository (with built spines) to the robot: ``make upload``
-- Run the pi3hat spine: ``make run_pi3hat_spine`` (on robot)
-- Run your agent: ``python ./agent/run.py``
+## Dependencies
+This project depends on other open-source software (listed in alphabetical order, excluding transitive dependencies):
+
+- [**btwxt**](https://github.com/bigladder/btwxt) for KDE interpolation to lookup measurement likelihoods,
+- [**cnpy**](https://github.com/rogersce/cnpy) to read `.npz` files and deserialize the KDEs,
+- [**mpacklog.cpp**](https://github.com/upkie/mpacklog.cpp) C++ library to log dictionaries into `.mpack`files,
+- [**kissfft**](https://github.com/mborgerding/kissfft) for efficient fast Fourier transforms (FFT) to compute transition probabilities,
+- [**Upkie**](https://github.com/upkie/upkie) as the robotic platform,
