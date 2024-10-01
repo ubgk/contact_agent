@@ -67,6 +67,14 @@ public:
         in(params.window_size, kiss_fft_cpx{0.0, 0.0}),
         out(params.window_size, kiss_fft_cpx{0.0, 0.0}),
         filtered_median_freq(0.0), filtered_mean_freq(0.0),
+        freqs(output_frequencies(params.dt)), sampling_freq(1 / params.dt),
+        nyquist_freq(sampling_freq / 2),
+        cfg(kiss_fft_alloc(params.window_size, false, nullptr, nullptr)) {}
+
+  // Destructor
+  ~TransitionModel() override;
+
+  //! Prefix of outputs in the observation dictionary.
   inline std::string prefix() const noexcept final {
     return "transition_model";
   }
