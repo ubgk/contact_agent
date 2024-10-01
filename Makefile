@@ -56,6 +56,14 @@ build: clean_broken_links  ## build Raspberry Pi targets
 simulate:  ## start a simulation using the Bullet spine
 	$(BAZEL) run //spines:bullet_spine -- --show
 
+.PHONY: simulate_stairs
+simulate_stairs:  ## start a simulation using the Bullet spine with stairs
+	$(BAZEL) run //spines:bullet_spine -- --show --extra-urdf-path assets/stairs.urdf
+
+.PHONY: simulate_track
+simulate_track:  ## start a simulation using the Bullet spine with track
+	$(BAZEL) run //spines:bullet_spine -- --show --extra-urdf-path assets/track.urdf
+
 .PHONY: upload
 upload: check_upkie_name build  ## upload built targets to the Raspberry Pi
 	ssh $(REMOTE) sudo date -s "$(CURDATE)"
