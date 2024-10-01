@@ -14,6 +14,6 @@ This project depends on other open-source software (listed in alphabetical order
 
 - [**btwxt**](https://github.com/bigladder/btwxt) for KDE interpolation to lookup measurement likelihoods,
 - [**cnpy**](https://github.com/rogersce/cnpy) to read `.npz` files and deserialize the KDEs,
-- [**mpacklog.cpp**](https://github.com/upkie/mpacklog.cpp) C++ library to log dictionaries into `.mpack`files,
+- [**mpacklog.cpp**](https://github.com/upkie/mpacklog.cpp) C++ library to log dictionaries into `.mpack` files,
 - [**kissfft**](https://github.com/mborgerding/kissfft) for efficient fast Fourier transforms (FFT) to compute transition probabilities,
-- [**Upkie**](https://github.com/upkie/upkie) as the robotic platform,
+- [**Upkie**](https://github.com/upkie/upkie) as the robotic platform.
