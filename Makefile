@@ -52,31 +52,30 @@ build: clean_broken_links  ## build Raspberry Pi targets
 	$(BAZEL) build --config=pi64 //spines:mock_spine
 	$(BAZEL) build --config=pi64 //spines:pi3hat_spine
 
+venv:  ## create a virtual environment
+	python3 -m venv venv
+	. venv/bin/activate && pip install -r requirements.txt
+
+URDF = track.urdf
+VALID_URDF_LIST = track.urdf stairs.urdf
+
 .PHONY: simulate
-simulate:  ## start a simulation using the Bullet spine
-	$(BAZEL) run //spines:bullet_spine -- --show
+simulate: ## start a simulation using the Bullet spine, check URDF is in VALID_URDF_LIST
+	@if [ -z "$(filter $(URDF),$(VALID_URDF_LIST))" ]; then \
+		echo "ERROR: URDF file $(URDF) is not in the list of valid URDF files: [$(VALID_URDF_LIST)]"; \
+		exit 1; \
+	fi
+	echo "Running simulation with $(URDF), spine PID: $(SPINE_PID)"
+	$(BAZEL) build //spines:bullet_spine
+	$(BAZEL) run //spines:bullet_spine -- --extra-urdf-path assets/$(URDF) --show &
 
-.PHONY: simulate_stairs
-simulate_stairs:  ## start a simulation using the Bullet spine with stairs
-	$(BAZEL) run //spines:bullet_spine -- --show --extra-urdf-path assets/stairs.urdf
-
-.PHONY: simulate_track
-simulate_track:  ## start a simulation using the Bullet spine with track
-	$(BAZEL) run //spines:bullet_spine -- --show --extra-urdf-path assets/track.urdf
-
+.PHONY: run_agent
+run_agent: venv simulate
+	. venv/bin/activate && python3 agent/pink_balancer/run_agent.py -c bullet
+	
 .PHONY: upload
 upload: check_upkie_name build  ## upload built targets to the Raspberry Pi
 	ssh $(REMOTE) sudo date -s "$(CURDATE)"
 	ssh $(REMOTE) mkdir -p $(PROJECT_NAME)
 	ssh $(REMOTE) sudo find $(PROJECT_NAME) -type d -name __pycache__ -user root -exec chmod go+wx {} "\;"
 	rsync -Lrtu --delete-after --delete-excluded --exclude bazel-out/ --exclude bazel-testlogs/ --exclude bazel-$(CURDIR_NAME) --exclude bazel-$(PROJECT_NAME)/ --exclude cache/ --exclude logs/ --exclude training/ --progress $(CURDIR)/ $(REMOTE):$(PROJECT_NAME)/
-
-run_mock_spine:  ### run the mock spine on the Raspberry Pi
-	$(RASPUNZEL) run -s //spines:mock_spine
-
-# NB: run_pi3hat_spine is used in build instructions
-run_pi3hat_spine:  ### run the pi3hat spine on the Raspberry Pi
-	$(RASPUNZEL) run -s //spines:pi3hat_spine
-
-run_agent:  ### run the agent on the Raspberry Pi
-	$(RASPUNZEL) run -s //agent:agent
