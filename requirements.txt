@@ -1,0 +1,7 @@
+foxplot==0.6.0
+gin-config==0.5.0
+meshcat_shapes==0.3.0
+pin-pink==3.0.0
+proxsuite==0.6.7
+qpmpc==3.0.1
+upkie==5.1.0
