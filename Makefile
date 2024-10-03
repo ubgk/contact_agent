@@ -12,17 +12,20 @@ venv:  ## create a virtual environment
 	python3 -m venv venv
 	. venv/bin/activate && pip install -r requirements.txt
 
-ENVIRONMENT = track
 VALID_ENV_LIST = track stairs
 
 .PHONY: run_agent
 run_agent: venv
-	@if [ -z "$(filter $(ENVIRONMENT),$(VALID_ENV_LIST))" ]; then \
+	@if [ -z "$(ENVIRONMENT)" ]; then \
+		echo $(ENVIRONMENT); \
+	elif [ -z "$(filter $(ENVIRONMENT),$(VALID_ENV_LIST))" ]; then \
 		echo "ERROR: Argument $(ENVIRONMENT) is not in the list of valid environments: [$(VALID_ENV_LIST)]"; \
 		exit 1; \
+	else \
+		URDF_ARG="--extra-urdf-path assets/$(ENVIRONMENT).urdf"; \
 	fi
 	$(BAZEL) build //spines:bullet_spine
-	$(BAZEL) run //spines:bullet_spine -- --extra-urdf-path assets/$(ENVIRONMENT).urdf --show &
+	$(BAZEL) run //spines:bullet_spine -- $(URDF_ARG) --show &
 	. venv/bin/activate && python3 agent/pink_balancer/run_agent.py -c bullet
 
 .PHONY: visualize
