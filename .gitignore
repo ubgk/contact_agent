@@ -7,3 +7,4 @@ read_log.py
 *.mpack
 venv
 external
+.DS_Store
