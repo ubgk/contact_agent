@@ -29,3 +29,5 @@ This project depends on other open-source software (listed in alphabetical order
 - [**mpacklog.cpp**](https://github.com/upkie/mpacklog.cpp) C++ library to log dictionaries into `.mpack` files,
 - [**kissfft**](https://github.com/mborgerding/kissfft) for efficient fast Fourier transforms (FFT) to compute transition probabilities,
 - [**Upkie**](https://github.com/upkie/upkie) as the robotic platform.
+
+Like the rest of the Upkie project, we use [**Bazel**](http://Bazel.build) as our build system.
