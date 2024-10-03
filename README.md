@@ -10,22 +10,31 @@ We use Bayesian filtering to estimate the posterior probability $P(S_t|m_{0:t})$
 
 The contact filter is implemented in:
 ```
-- observers/ContactFilter.cpp
-- observers/TransitionModel.cpp
-- observers/MeasurementModel.cpp
+observers/
+|- ContactFilter.cpp
+|- MeasurementModel.cpp
+|- TransitionModel.cpp
 ```
 
+## Usage
+
+
+### Offline Filtering
 If you have an existing Upkie `.mpack` log file, you can alternatively use the replay tool:
 ```bash
 $ bazel run //observers:replay -- input.mpack [output.mpack]
 ```
 which will process your log file offline and write the results to the output destination.
 
+### Visualization 
+You can 
+
 ## Dependencies
 This project depends on other open-source software (listed in alphabetical order, excluding transitive dependencies):
 
 - [**btwxt**](https://github.com/bigladder/btwxt) for KDE interpolation to lookup measurement likelihoods,
 - [**cnpy**](https://github.com/rogersce/cnpy) to read `.npz` files and deserialize the KDEs,
+- [**foxplot**](https://github.com/stephane-caron/foxplot) to visualize `.mpack` files,
 - [**mpacklog.cpp**](https://github.com/upkie/mpacklog.cpp) C++ library to log dictionaries into `.mpack` files,
 - [**kissfft**](https://github.com/mborgerding/kissfft) for efficient fast Fourier transforms (FFT) to compute transition probabilities,
 - [**Upkie**](https://github.com/upkie/upkie) as the robotic platform.
