@@ -1,0 +1,3 @@
+[submodule "agent/pink_balancer"]
+	path = agent/pink_balancer
+	url = git@github.com:upkie/pink_balancer.git
