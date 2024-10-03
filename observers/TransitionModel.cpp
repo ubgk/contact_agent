@@ -2,6 +2,7 @@
 // Copyright 2024 Inria
 #include "observers/TransitionModel.h"
 
+#include <algorithm>
 #include <iostream>
 #include <numeric>
 
@@ -45,7 +46,13 @@ TransitionModel::~TransitionModel() {
 
 void TransitionModel::read(const Dictionary &observation) {
   // Read the z-component of the linear acceleration.
-  double pitch = observation("base_orientation")("pitch");
+  double pitch = 0.0;
+
+  // Check if base_orientation is in the observation dictionary.
+  auto keys = observation.keys();
+  if (std::find(keys.begin(), keys.end(), "base_orientation") != keys.end()) {
+    pitch = observation("base_orientation")("pitch");
+  }
 
   double acc_z =
       observation("imu")("linear_acceleration").as<Eigen::Vector3d>()(2);
@@ -53,7 +60,9 @@ void TransitionModel::read(const Dictionary &observation) {
   acc_z = acc_z * std::cos(pitch);
 
   double acc_xy_norm = observation("imu")("linear_acceleration")
-    .as<Eigen::Vector3d>().head<2>().norm();
+                           .as<Eigen::Vector3d>()
+                           .head<2>()
+                           .norm();
 
   acc_z += acc_xy_norm * std::sin(pitch);
 
@@ -93,8 +102,7 @@ void TransitionModel::write(Dictionary &observation) {
   observation(prefix())("power_freq") = power * median_freq;
 
   // Compute transition probabilities
-  double p_switch =
-      sigmoid(power, params.switch_offset, params.switch_scale);
+  double p_switch = sigmoid(power, params.switch_offset, params.switch_scale);
 
   // Filter the median frequency, to have some memory of the previous
   // transitions. Do not include the median frequency if the power is low (i.e.
