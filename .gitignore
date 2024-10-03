@@ -5,3 +5,5 @@ tools/bazel
 .vscode/c_cpp_properties.json
 read_log.py
 *.mpack
+venv
+external
