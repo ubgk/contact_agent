@@ -26,7 +26,7 @@ run_agent: venv
 	fi
 	$(BAZEL) build //spines:bullet_spine
 	$(BAZEL) run //spines:bullet_spine -- $(URDF_ARG) --show &
-	. venv/bin/activate && python3 agent/pink_balancer/run_agent.py -c bullet
+	. venv/bin/activate && python3 pink_balancer/run_agent.py -c bullet
 
 .PHONY: visualize
 visualize:  ## Get the latest log file in tmp
