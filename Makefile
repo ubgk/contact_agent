@@ -24,3 +24,8 @@ run_agent: venv
 	$(BAZEL) build //spines:bullet_spine
 	$(BAZEL) run //spines:bullet_spine -- --extra-urdf-path assets/$(ENVIRONMENT).urdf --show &
 	. venv/bin/activate && python3 agent/pink_balancer/run_agent.py -c bullet
+
+.PHONY: visualize
+visualize:  ## Get the latest log file in tmp
+	$(eval LATEST_LOG+=/tmp/$(shell ls /tmp/ | grep '.mpack' | tail -n 1))
+	. venv/bin/activate && foxplot $(LATEST_LOG) -l /observation/contact_filter/p_contact_smooth /observation/transition_model/p_landing_p_switch /observation/transition_model/p_takeoff_p_switch

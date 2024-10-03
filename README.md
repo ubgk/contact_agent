@@ -34,6 +34,14 @@ make run_agent ENVIRONMENT=[stairs|track]
 
 The recipe will launch both a C++ spine and a Python MPC balancer agent.
 
+### Visualization 
+You can visualize the spine logs using [**foxplot**](https://github.com/stephane-caron/foxplot):
+
+```
+make visualize
+```
+
+This command will visualize the latest mpack log file in your `/tmp/` directory.
 
 ### Offline Filtering
 If you have an existing Upkie `.mpack` log file, you can alternatively use the replay tool:
