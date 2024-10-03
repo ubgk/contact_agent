@@ -17,17 +17,30 @@ observers/
 ```
 
 ## Usage
+The contact filter is integrated into the *spines* provided in this project. You should either run `bullet_spine` for simulation or `pi3hat_spine` on the real robot. Please refer to the [official documentation](https://upkie.github.io/upkie/spines.html) for more details on *spines* and *agents*. 
+
+## TLDR
+We provide a convenvience Make recipe to launch simulated environments:
+
+```
+make run_agent
+```
+
+*or* specify one of the environments:
+
+```
+make run_agent ENVIRONMENT=[stairs|track]
+```
+
+The recipe will launch both a C++ spine and a Python MPC balancer agent.
 
 
 ### Offline Filtering
 If you have an existing Upkie `.mpack` log file, you can alternatively use the replay tool:
 ```bash
-$ bazel run //observers:replay -- input.mpack [output.mpack]
+$ ./tools/bazelisk run //observers:replay -- input.mpack [output.mpack]
 ```
 which will process your log file offline and write the results to the output destination.
-
-### Visualization 
-You can 
 
 ## Dependencies
 This project depends on other open-source software (listed in alphabetical order, excluding transitive dependencies):
