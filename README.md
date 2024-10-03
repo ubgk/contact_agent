@@ -8,6 +8,18 @@ This project implements a Bayesian filter for estimating the contact state of [U
 ![Overview](figs/contact_filter.png)
 We use Bayesian filtering to estimate the posterior probability $P(S_t|m_{0:t})$ of being in contact state $S_t$ given measurements $m_{0:t}$. Internally, measurement probabilities $P(m_t|S_t)$ are estimated by kernel density estimation (KDE) from knee and wheel torque sensors, while transition probabilities are estimated from IMU measurements through frequency analysis.
 
+The contact filter is implemented in:
+```
+- observers/ContactFilter.cpp
+- observers/TransitionModel.cpp
+- observers/MeasurementModel.cpp
+```
+
+If you have an existing Upkie `.mpack` log file, you can alternatively use the replay tool:
+```bash
+$ bazel run //observers:replay -- input.mpack [output.mpack]
+```
+which will process your log file offline and write the results to the output destination.
 
 ## Dependencies
 This project depends on other open-source software (listed in alphabetical order, excluding transitive dependencies):
