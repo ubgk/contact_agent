@@ -1,4 +1,5 @@
 # -*- python -*-
+load("//tools/lint:lint.bzl", "add_lint_tests")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -64,3 +65,5 @@ cc_library(
         "@bazel_tools//tools/cpp/runfiles:runfiles",
     ]
 )
+
+add_lint_tests()
