@@ -111,10 +111,6 @@ jobs:
               run: |
                   tools/bazelisk test --compilation_mode=fastbuild --config lint //...
 
-            - name: "Check Python code formatting"
-              run: |
-                  ruff check upkie
-
             - name: "Check shell scripts formatting"
               run: |
                   find . \
