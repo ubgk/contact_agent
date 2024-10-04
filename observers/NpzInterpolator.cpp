@@ -2,6 +2,7 @@
 // Copyright 2024 Inria
 
 #include "observers/NpzInterpolator.h"
+
 #include "cnpy/cnpy.h"
 #include "spdlog/spdlog.h"
 
@@ -32,9 +33,10 @@ NpzInterpolator::NpzInterpolator(std::string npz_path,
     }
 
     if (arr.shape.size() > 1) {
-      spdlog::warn("Axis \"{}\" has shape {} which is not a vector. "
-                   "Only the first dimension will be used",
-                   axis_key, arr.shape.size());
+      spdlog::warn(
+          "Axis \"{}\" has shape {} which is not a vector. "
+          "Only the first dimension will be used",
+          axis_key, arr.shape.size());
     }
 
     double *ptr = arr.data<double>();
@@ -75,7 +77,7 @@ NpzInterpolator::NpzInterpolator(std::string npz_path,
   interpolator = Btwxt::RegularGridInterpolator(axes, datasets);
 }
 
-const std::vector<double>
-NpzInterpolator::interpolate(const std::vector<double> &point) {
+const std::vector<double> NpzInterpolator::interpolate(
+    const std::vector<double> &point) {
   return interpolator.get_values_at_target(point);
 }

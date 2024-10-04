@@ -18,9 +18,11 @@ using bazel::tools::cpp::runfiles::Runfiles;
 using upkie::cpp::utils::low_pass_filter;
 
 MeasurementModel::MeasurementModel(const Parameters &params)
-    : leg_name(params.leg_name), joint_names(params.joint_names),
+    : leg_name(params.leg_name),
+      joint_names(params.joint_names),
       cutoff_periods(params.cutoff_periods),
-      filtered_torques(params.joint_names.size()), dt(params.dt) {
+      filtered_torques(params.joint_names.size()),
+      dt(params.dt) {
   if (dt <= 0.0) {
     throw std::invalid_argument("Time step must be strictly positive!");
   }
@@ -62,8 +64,8 @@ void MeasurementModel::write(Dictionary &observation) {
   }
 }
 
-MeasurementModel::Likelihoods
-MeasurementModel::query_likelihoods(const std::vector<double> &point) const {
+MeasurementModel::Likelihoods MeasurementModel::query_likelihoods(
+    const std::vector<double> &point) const {
   std::vector<double> likelihoods = interpolator->interpolate(point);
   return MeasurementModel::Likelihoods{.contact = likelihoods.at(0),
                                        .no_contact = likelihoods.at(1)};

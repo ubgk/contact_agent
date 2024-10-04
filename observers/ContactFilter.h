@@ -13,7 +13,7 @@ using upkie::cpp::observers::Observer;
  *
  */
 class ContactFilter : public Observer {
-public:
+ public:
   /*! Initialize observer.
    *
    * \param[in] p_contact Initial contact belief.

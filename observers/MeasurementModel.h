@@ -20,7 +20,7 @@ using upkie::cpp::observers::Observer;
  *
  */
 class MeasurementModel : public Observer {
-public:
+ public:
   //! Parameters to the measurement model
   struct Parameters {
     //! Path to the executable
@@ -97,7 +97,7 @@ public:
   */
   Likelihoods query_likelihoods(const std::vector<double> &point) const;
 
-private:
+ private:
   //! Observer parameters
   // Parameters params_;
 

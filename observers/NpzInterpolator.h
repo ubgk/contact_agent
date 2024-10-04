@@ -23,7 +23,7 @@ inline size_t vec_prod(const std::vector<size_t> &vec) {
 }
 
 class NpzInterpolator {
-public:
+ public:
   explicit NpzInterpolator(std::string npz_path,
                            std::vector<std::string> axis_keys,
                            std::vector<std::string> value_keys);
@@ -44,6 +44,6 @@ public:
   std::vector<Btwxt::GridAxis> axes;
   std::vector<Btwxt::GridPointDataSet> datasets;
 
-private:
+ private:
   Btwxt::RegularGridInterpolator interpolator;
 };

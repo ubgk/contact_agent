@@ -11,7 +11,7 @@
 #include <string>
 #include <vector>
 
-#include "mpack.h"
+#include "mpack/mpack.h"
 #include "mpacklog/Logger.h"
 #include "observers/ContactFilter.h"
 #include "observers/MeasurementModel.h"
@@ -68,7 +68,7 @@ static bool validate_path(const std::filesystem::path &path,
 
 //! Command-line arguments for the mock spine.
 class CommandLineArguments {
-public:
+ public:
   /*! Read command line arguments.
    *
    * \param[in] args List of command-line arguments.
@@ -139,7 +139,7 @@ public:
     std::cout << "\n";
   }
 
-public:
+ public:
   //! Error flag
   bool error = false;
 
@@ -158,8 +158,7 @@ public:
 
 Replay::Replay(const Parameters &parameters) {
   //! Check if the paths are valid
-  if (!validate_path(parameters.input_path))
-    return;
+  if (!validate_path(parameters.input_path)) return;
 
   // Open the input file and mmap it
   input_file = std::make_shared<MemoryMappedFile>(parameters.input_path, true);

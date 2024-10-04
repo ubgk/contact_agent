@@ -46,7 +46,7 @@ std::vector<double> output_frequencies(double dt,
 
 //! Observe contact between the wheels and the floor.
 class TransitionModel : public Observer {
-public:
+ public:
   struct Parameters {
     //! Time step between observations
     double dt = 0.001;
@@ -63,11 +63,14 @@ public:
    *
    */
   explicit TransitionModel(const Parameters &params)
-      : params(params), acc_buf(params.window_size, 0.0),
+      : params(params),
+        acc_buf(params.window_size, 0.0),
         in(params.window_size, kiss_fft_cpx{0.0, 0.0}),
         out(params.window_size, kiss_fft_cpx{0.0, 0.0}),
-        filtered_median_freq(0.0), filtered_mean_freq(0.0),
-        freqs(output_frequencies(params.dt)), sampling_freq(1 / params.dt),
+        filtered_median_freq(0.0),
+        filtered_mean_freq(0.0),
+        freqs(output_frequencies(params.dt)),
+        sampling_freq(1 / params.dt),
         nyquist_freq(sampling_freq / 2),
         cfg(kiss_fft_alloc(params.window_size, false, nullptr, nullptr)) {}
 

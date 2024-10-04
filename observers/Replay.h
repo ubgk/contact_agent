@@ -23,7 +23,7 @@ struct MemoryMappedFile {
 };
 
 class Replay {
-public:
+ public:
   struct Parameters {
     explicit Parameters(const std::string &input_path,
                         const std::string &output_path,
