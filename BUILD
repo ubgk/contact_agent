@@ -4,6 +4,11 @@
 
 package(default_visibility = ["//visibility:public"])
 
+exports_files([
+    "CPPLINT.cfg",
+    ".clang-format",
+])
+
 config_setting(
     name = "linux",
     constraint_values = ["@platforms//os:linux"],
