@@ -1,4 +1,5 @@
 # A Data-driven Contact Estimation Method for Wheeled-Biped Robots
+[![C++](https://img.shields.io/badge/C++-%2300599C.svg?logo=c%2B%2B&logoColor=white)](observers/ContactFilter.cpp)
 [![CI](https://img.shields.io/github/actions/workflow/status/ubgk/contact_agent/ci.yml?branch=main)](https://github.com/ubgk/contact_agent/actions/workflows/ci.yml)
 [![Coverage](https://coveralls.io/repos/github/ubgk/contact_agent/badge.svg)](https://coveralls.io/github/ubgk/contact_agent)
 
