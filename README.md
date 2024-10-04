@@ -1,5 +1,6 @@
 # A Data-driven Contact Estimation Method for Wheeled-Biped Robots
-
+[![CI](https://img.shields.io/github/actions/workflow/status/ubgk/contact_agent/ci.yml?branch=main)](https://github.com/ubgk/contact_agent/actions/workflows/ci.yml)
+[![Coverage](https://coveralls.io/repos/github/ubgk/contact_agent/badge.svg)](https://coveralls.io/github/ubgk/contact_agent)
 [![Video](figs/experiment_overview.png)](https://www.youtube.com/watch?v=QemngyjAQVU)
 
 This project implements a Bayesian filter for estimating the contact state of [Upkie](https://github.com/upkie/upkie), a fully open-source wheeled-biped. Check out the [video](https://www.youtube.com/watch?v=QemngyjAQVU).
