@@ -23,6 +23,8 @@ observers/
 ## Usage
 The contact filter is integrated into the *spines* provided in this project. You should either run `bullet_spine` for simulation or `pi3hat_spine` on the real robot. Please refer to the [official documentation](https://upkie.github.io/upkie/spines.html) for more details on *spines* and *agents*. 
 
+You may wish to use a joystick 🕹️ to command the robot (Linux only).
+
 ## TLDR
 We provide a convenvience Make recipe to launch simulated environments:
 
