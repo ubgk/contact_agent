@@ -3,7 +3,7 @@
 [![CI](https://img.shields.io/github/actions/workflow/status/ubgk/contact_agent/ci.yml?branch=main)](https://github.com/ubgk/contact_agent/actions/workflows/ci.yml)
 [![Coverage](https://coveralls.io/repos/github/ubgk/contact_agent/badge.svg)](https://coveralls.io/github/ubgk/contact_agent)
 [![YouTube](https://img.shields.io/badge/YouTube-%23FF0000.svg?logo=YouTube&logoColor=white)](https://www.youtube.com/watch?v=QemngyjAQVU)
-
+[![HAL](https://img.shields.io/badge/HAL-04726386-B03532?logo=hal)](https://hal.science/hal-04726386)
 [![Video](figs/experiment_overview.png)](https://www.youtube.com/watch?v=QemngyjAQVU)
 
 This project implements a Bayesian filter for estimating the contact state of [Upkie](https://github.com/upkie/upkie), a fully open-source wheeled-biped. Check out the [video](https://www.youtube.com/watch?v=QemngyjAQVU).
