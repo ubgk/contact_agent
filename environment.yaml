@@ -1,4 +1,4 @@
-name: contact_agent  # TODO: set project name
+name: contact_agent
 channels:
     - https://conda.anaconda.org/conda-forge
 dependencies:
