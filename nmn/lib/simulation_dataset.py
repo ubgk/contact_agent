@@ -16,7 +16,7 @@ from .nmn import NMN
 from .spine_config import SPINE_CONFIG
 from .upkie_lift_schedule import UpkieLiftSchedule
 
-MAX_EPISODE_STEPS = 2_000
+MAX_EPISODE_STEPS = 2_000  # 2000 * 0.005 = 10 seconds
 TORCH_DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 

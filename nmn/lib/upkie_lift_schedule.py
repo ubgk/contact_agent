@@ -6,6 +6,9 @@
 
 import numpy as np
 
+MIN_LIFT_HEIGHT = 0.1  # [m]
+MAX_LIFT_HEIGHT = 0.5  # [m]
+
 
 class UpkieLiftSchedule:
 
@@ -17,7 +20,7 @@ class UpkieLiftSchedule:
 
     def reset(self):
         episode_len = self.episode_len
-        height = np.random.uniform(0.1, 0.5)
+        height = np.random.uniform(MIN_LIFT_HEIGHT, MAX_LIFT_HEIGHT)
         hold_steps = np.random.randint(1, episode_len // 2)
         lift_steps = np.random.randint(1, episode_len // 4)
         start = np.random.randint(-episode_len // 2, episode_len // 2)
