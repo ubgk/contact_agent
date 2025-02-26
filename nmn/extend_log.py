@@ -5,7 +5,7 @@
 # Copyright 2024 Inria
 
 """
-This utility extends an existing Upkie log with NMN outputs.
+Extend an existing Upkie log with NMN outputs.
 """
 
 import argparse

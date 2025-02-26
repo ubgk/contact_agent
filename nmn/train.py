@@ -4,6 +4,10 @@
 # SPDX-License-Identifier: Apache-2.0
 # Copyright 2024 Inria
 
+"""
+Train a new NMN from training and validation sets saved in data/.
+"""
+
 import logging
 import os
 from typing import List, Tuple
