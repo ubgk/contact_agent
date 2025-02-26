@@ -1,0 +1,6 @@
+channels:
+    - https://conda.anaconda.org/conda-forge
+dependencies:
+    - matplotlib
+    - pytorch >= 2.3.0
+    - upkie >= 6.1.0
